@@ -3,6 +3,7 @@ using API.FurnitureStore.Share;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace API.FurnitureStore.API.Controllers
 {
@@ -33,6 +34,35 @@ namespace API.FurnitureStore.API.Controllers
                 return NotFound($"Client with ID {id} was not found");
 
             return Ok(client);
+        }
+
+        [HttpPost("postClient")]
+        public async Task<IActionResult> Post(Client client)
+        {
+            await _context.Clients.AddAsync(client);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Post", client.id, client);
+        }
+        
+        [HttpPut]
+        public async Task<IActionResult>Put(Client client)
+        {
+            _context.Clients.Update(client);
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Client client)
+        {
+            if (client == null) return NotFound();
+
+            _context.Clients.Remove(client);
+
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }

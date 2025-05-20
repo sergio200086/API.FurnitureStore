@@ -66,7 +66,7 @@ namespace API.FurnitureStore.API.Controllers
         [HttpDelete("deleteCategories")]
         public async Task<IActionResult> DeleteCategories(ProductCategory[] categories)
         {
-            if (!categories.Any()) return NotFound();
+            if (categories.Length == 0) return NotFound();
 
             _context.ProductCategories.RemoveRange(categories);
             await _context.SaveChangesAsync();

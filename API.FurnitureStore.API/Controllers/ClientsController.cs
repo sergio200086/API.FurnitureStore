@@ -1,9 +1,7 @@
 ﻿using API.FurnitureStore.Data;
 using API.FurnitureStore.Share;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace API.FurnitureStore.API.Controllers
 {

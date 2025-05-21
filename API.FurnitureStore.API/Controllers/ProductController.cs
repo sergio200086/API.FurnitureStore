@@ -34,6 +34,13 @@ namespace API.FurnitureStore.API.Controllers
             return Ok(product);
         }
 
+        [HttpGet("GetByCategory/{productCategory}")]
+        public async Task<IActionResult> DeleteAllProductsFromCategory(int productCategory)
+        {
+            var products = _context.Products.Where(x => x.ProductCategoryId == productCategory).ToListAsync();
+            return Ok(products);
+        }
+
         [HttpPost("postProduct")]
         public async Task<IActionResult> CreateProduct(Product product)
         {
